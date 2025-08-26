@@ -1,0 +1,7 @@
+apiVersion: 1
+
+providers:
+  - name: 'Dashboards'
+    updateIntervalSeconds: 15
+    options:
+      path: /etc/grafana/provisioning/dashboards/

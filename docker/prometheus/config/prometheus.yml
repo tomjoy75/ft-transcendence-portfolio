@@ -1,0 +1,33 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:3090']
+  - job_name: 'nginx_exporter-webserv'
+    static_configs:
+      - targets: ['nginx_prometheus_exporter-webserv:3913']
+  - job_name: 'nginx_exporter-frontend'
+    static_configs:
+      - targets: ['nginx_prometheus_exporter-frontend:3914']
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['grafana:3030']
+  - job_name: 'backend'
+    static_configs:
+      - targets: ['backend:3001']
+  - job_name: 'ponggame'
+    static_configs:
+      - targets: ['ponggame:3002']
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['node_exporter:3910']
+
+rule_files:
+  - '/etc/prometheus/rules.yml'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets: [ 'grafana:3030' ]

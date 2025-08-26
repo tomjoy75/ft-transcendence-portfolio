@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ft_transcendence</title>
+  <link rel="stylesheet" href="/styles/output.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <div id="app">
+    <div id="navbar"></div>
+    <div id="page"></div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div id="toast-container" class="fixed top-5 right-5 space-y-2 z-50"></div>
+
+  <!-- Logout confirmation modal -->
+  <div id="modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50">
+    <div id="modal-box" class="bg-gray-800 text-white rounded-2xl shadow-2xl p-6 w-full max-w-sm border border-gray-700 animate-fadeIn relative">
+      <h2 class="text-xl font-semibold mb-4 text-center">Confirm Logout</h2>
+      <p class="mb-6 text-center text-gray-300">Are you sure you want to log out?</p>
+      <div class="flex justify-end space-x-4">
+        <button id="cancelLogout" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm transition-colors">Cancel</button>
+        <button id="confirmLogout" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded text-sm transition-colors">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script type="module" src="/dist/game/pong/gameRender.js"></script>
+
+  <script type="module" src="/dist/main.js"></script>
+</body>
+</html>

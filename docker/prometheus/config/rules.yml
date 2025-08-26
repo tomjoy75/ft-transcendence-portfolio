@@ -1,0 +1,55 @@
+groups:
+  - name: prometheus_up
+    rules:
+      - record: prometheusIsUp
+        expr: up{instance="localhost:3090", job="prometheus"} == 1
+      - alert: prometheusNotUp
+        expr: up{instance="localhost:3090", job="prometheus"} == 0
+  - name: grafana_up
+    rules:
+      - record: grafanaIsUp
+        expr: up{instance="grafana:3030", job="grafana"} == 1
+      - alert: grafanaNotUp
+        expr: up{instance="grafana:3030", job="grafana"} == 0
+  - name: node_exporter_up
+    rules:
+      - record: node_exporterIsUp
+        expr: up{instance="node_exporter:3910", job="node_exporter"} == 1
+      - alert: node_exporterNotUp
+        expr: up{instance="node_exporter:3910", job="node_exporter"} == 0
+  - name: backend_up
+    rules:
+      - record: backendIsUp
+        expr: up{instance="backend:3001", job="backend"} == 1
+      - alert: backendNotUp
+        expr: up{instance="backend:3001", job="backend"} == 0
+  - name: ponggame_up
+    rules:
+      - record: ponggameIsUp
+        expr: up{instance="ponggame:3002", job="ponggame"} == 1
+      - alert: ponggameNotUp
+        expr: up{instance="ponggame:3002", job="ponggame"} == 0
+  - name: nginx_prometheus_exporter-webserv_up
+    rules:
+      - record: nginx_prometheus_exporter-webservIsUp
+        expr: up{instance="nginx_prometheus_exporter-webserv:3913", job="nginx_exporter-webserv"} == 1
+      - alert: nginx_prometheus_exporter-webservNotUp
+        expr: up{instance="nginx_prometheus_exporter-webserv:3913", job="nginx_exporter-webserv"} == 0
+  - name: nginx_prometheus_exporter-frontend_up
+    rules:
+      - record: nginx_prometheus_exporter-frontendIsUp
+        expr: up{instance="nginx_prometheus_exporter-frontend:3914", job="nginx_exporter-frontend"} == 1
+      - alert: nginx_prometheus_exporter-frontendNotUp
+        expr: up{instance="nginx_prometheus_exporter-frontend:3914", job="nginx_exporter-frontend"} == 0
+  - name: nginx-webserv_up
+    rules:
+      - record: nginx-webservIsUp
+        expr: nginx_up{instance="nginx_prometheus_exporter-webserv:3913", job="nginx_exporter-webserv"} == 1
+      - alert: nginx-webservNotUp
+        expr: nginx_up{instance="nginx_prometheus_exporter-webserv:3913", job="nginx_exporter-webserv"} == 0
+  - name: nginx-frontend_up
+    rules:
+      - record: nginx-frontendIsUp
+        expr: nginx_up{instance="nginx_prometheus_exporter-frontend:3914", job="nginx_exporter-frontend"} == 1
+      - alert: nginx-frontendNotUp
+        expr: nginx_up{instance="nginx_prometheus_exporter-frontend:3914", job="nginx_exporter-frontend"} == 0

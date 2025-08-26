@@ -1,0 +1,115 @@
+name: ft_transcendence
+
+services:
+  frontend:
+    image: "frontend:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    expose:
+      - "${PORT_FRONT}"
+      - "3091"
+    networks:
+      - ft_transcendence
+  backend:
+    image: "backend:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile.dev 
+    expose:
+      - "${PORT_BACK}"
+    volumes:
+      - ./backend:/app-back                       
+      - /app-back/node_modules                    
+      - ./backend/src/db/users.db:/app-back/src/db/users.db
+    env_file: .env
+    networks:
+      - ft_transcendence
+  webserv:
+    image: "webserv:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/webserv/Dockerfile
+    ports:
+      - "${PORT_WEBSERV}:${PORT_WEBSERV}"
+      - "3444:3444"
+    expose:
+      - "3446"
+    networks:
+      - ft_transcendence
+  prometheus:
+    image: "prometheus:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/prometheus/Dockerfile
+    expose:
+      - "3090"
+    networks:
+      - ft_transcendence
+    volumes:
+      - prometheus-config:/etc/prometheus
+  grafana:
+    image: "grafana:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/grafana/Dockerfile
+    expose:
+      - "3030"
+    networks:
+      - ft_transcendence
+    volumes:
+      - grafana-data:/var/lib/grafana
+    env_file: .env
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
+      - GF_AUTH_DISABLE_SIGNUP=${GF_AUTH_DISABLE_SIGNUP}
+  nginx_prometheus_exporter-webserv:
+    image: "nginx_prometheus_exporter-webserv:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/nginx_prometheus_exporter-webserv/Dockerfile
+    expose:
+      - "3913"
+    networks:
+      - ft_transcendence
+  nginx_prometheus_exporter-frontend:
+    image: "nginx_prometheus_exporter-frontend:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/nginx_prometheus_exporter-frontend/Dockerfile
+    expose:
+      - "3914"
+    networks:
+      - ft_transcendence
+  node_exporter:
+    image: "node_exporter:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/node_exporter/Dockerfile
+    expose:
+      - "3910"
+    networks:
+      - ft_transcendence
+  ponggame:
+    image: "ponggame:ft_transcendence"
+    build:
+      context: .
+      dockerfile: ./docker/ponggame/Dockerfile
+    expose:
+      - "${PORT_PONG}"
+    env_file: .env
+    networks:
+      - ft_transcendence
+    depends_on:
+      - backend
+
+volumes:
+  sqlite_data:
+  prometheus-config:
+  grafana-data:
+
+networks:
+  ft_transcendence:
+    driver: bridge
+    name: ft_transcendence

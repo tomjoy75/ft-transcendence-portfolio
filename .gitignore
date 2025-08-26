@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+*.swp
+*.db
+.env
+# src/avatars/  //TODO: Put it at the end of the project when in prod mode
