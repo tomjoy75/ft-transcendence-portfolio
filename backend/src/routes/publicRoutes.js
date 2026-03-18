@@ -98,7 +98,6 @@ export default function publicRoutes(fastify, options) {
 			}, // Payload
 			{ expiresIn: "1d" }
 			);
-			console.log("✅ Token generated:", token);
 			return reply.send({ message: "Login successful", token });
 		} else {
 			const tempToken = fastify.jwt.sign(

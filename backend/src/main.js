@@ -23,7 +23,6 @@ const fastify = Fastify({
     }
 })
 dotenv.config();
-console.log("ENV DEBUG:", process.env);
 
 const start = async () => {
     try {
@@ -37,7 +36,6 @@ const start = async () => {
 
 // main();
 const db = await initDB();
-console.log("🔐 Secret is:", process.env.JWT_SECRET);
 await fastify.register(sendError);
 await fastify.register(fastifyJwt, {
     secret: process.env.JWT_SECRET
