@@ -11,3 +11,4 @@ frontend/public/styles/output.css
 backend/src/db/*.sqbpro
 backend/sandbox/
 backend/src/routes/*.js.old
+.vscode/
