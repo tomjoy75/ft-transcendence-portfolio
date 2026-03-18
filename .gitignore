@@ -4,3 +4,7 @@ npm-debug.log
 *.db
 .env
 # src/avatars/  //TODO: Put it at the end of the project when in prod mode
+frontend/public/dist/
+pongGame/dist/
+frontend/styles/output.css
+frontend/public/styles/output.css
