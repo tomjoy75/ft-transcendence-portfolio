@@ -13,6 +13,9 @@ The application provides:
 - Match lifecycle: persistence and match history/results APIs
 - Real-time Pong gameplay integrated into the overall system
 
+![Main application homepage](assets/images/transcendence-homepage.png)
+*Main application homepage.*
+
 ## Architecture at a Glance
 
 - `webserv/` (nginx reverse proxy)
@@ -35,6 +38,9 @@ The application provides:
 
 This is a team project; my primary contribution was the backend. I focused on building and organizing the backend API around authentication, user management, and game domain workflows.
 
+![Backend authentication flow](assets/images/transcendence-auth-flow.png)
+*Backend authentication flow: signup, login, JWT, and 2FA gating.*
+
 - Auth / security: signup/login endpoints, JWT authentication, and 2FA flow (setup + verification)
 - Profiles: profile access and backend-side avatar handling
 - Social: friends management (request/accept/decline/remove, pending/accepted flows)
@@ -55,6 +61,9 @@ This is a team project; my primary contribution was the backend. I focused on bu
 
 - Tournament + match domain logic backed by SQLite
   - Backend endpoints and query patterns to support tournament lifecycle and match persistence/history
+
+![Core SQLite schema](assets/images/transcendence-db-schema.png)
+*Core SQLite schema for users, friendships, tournaments, and matches.*
 
 - Backend validation and organization
   - Centralized validation utilities and reusable backend organization patterns to keep request handling consistent
