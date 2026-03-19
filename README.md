@@ -90,6 +90,7 @@ This is a team project; my primary contribution was the backend. I focused on bu
    - Copy `.env.template` to `.env`
    - Set `JWT_SECRET`
    - Configure Grafana admin credentials (`GF_SECURITY_ADMIN_USER`, `GF_SECURITY_ADMIN_PASSWORD`) as required
+   - Note: `GF_SECURITY_ADMIN_PASSWORD` must follow the project password policy (minimum 8 characters, with at least one uppercase, one lowercase, one digit, and one special character)
 
 2. Start the full stack:
    - Run `make`
